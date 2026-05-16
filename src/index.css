@@ -1,1 +1,21 @@
 @import 'tailwindcss';
+
+@theme {
+  --font-base: 'Poppins', sans-serif;
+  --font-highlight: 'Erica One', cursive;
+  --color-beige: #E0D2B7;
+  --color-darkbeige: #D3B490;
+  --color-blue: #6E889B;
+  --color-red: #B11B25;
+  --color-black: #1E1E1E;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--color-beige);
+  color: var(--color-black);
+}
