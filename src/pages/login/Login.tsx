@@ -2,7 +2,10 @@ import { useContext, useEffect, useState, type ChangeEvent, type SyntheticEvent 
 import { Link, useNavigate } from "react-router-dom"
 import type UsuarioLogin from "../../models/UsuarioLogin";
 import { AuthContext } from "../../contexts/AuthContext";
-import { ClipLoader } from "react-spinners";
+import Button from "../../components/ui/button/Button";
+import HighlightedTitle from "../../components/ui/highlightedtitle/HighlightedTitle";
+import { InputField } from "../../components/ui/inputfield/InputField";
+import Card from "../../components/card/Card";
 
 function Login() {
     const navigate = useNavigate();
@@ -30,34 +33,44 @@ function Login() {
     }
 
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold'>
-        <form className='flex justify-center intems-center flex-col w-1/2 gap-4' onSubmit={login}>
-            <h2 className='text-slate-900 text-5xl'>Entrar</h2>
+    <div className='flex flex-col md:flex-row h-screen items-center justify-between p-4 md:p-24 mt-10 md:mt-0'>
+        <form className='flex justify-center flex-col w-full md:w-1/3 gap-4 order-last md:order-first' onSubmit={login}>
+            <HighlightedTitle title="Fazer Login" />
 
-            <div className='flex flex-col w-full'>
-                <label htmlFor='usuario'>Usuário</label>
-                <input type='text' id='usuario' name='usuario' placeholder='Usuário' className='border-2 border-slate-700 rounded p-2' value={usuarioLogin.usuario} onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}/>
-            </div>
+            <InputField
+                label="Usuário"
+                name="usuario"
+                id="usuario"
+                placeholder="Digite o seu usuário"
+                value={usuarioLogin.usuario}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+            />
 
-            <div className='flex flex-col w-full'>
-                <label htmlFor='senha'>Senha</label>
-                <input type='password' id='senha' name='senha' placeholder='Senha' className='border-2 border-slate-700 rounded p-2' value={usuarioLogin.senha} onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}/>
-            </div>
+            <InputField
+                label="Senha"
+                name="senha"
+                id="senha"
+                type="password"
+                placeholder="Digite a sua senha"
+                value={usuarioLogin.senha}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+            />
 
-            <button type='submit' className='rounded text-white bg-indigo-400 hover:bg-indigo-900 w-1/2 py-2'>
-                {isLoading ? <ClipLoader size={24} color="#ffffff" /> : <span>Entrar</span>}
-            </button>
-            
+            <Button buttonType='form' variant='blue'>
+                {isLoading ? "Entrando..." : "Entrar"}
+            </Button>
+
             <hr className='border-slate-800 w-full'/>
 
-            <p>
-                Ainda não tem uma conta?{' '}
-                <Link to='/cadastro' className='text-indigo-800 hover:underline'>
-                    Cadastrar
+            <p className="text-center md:text-left text-sm md:text-[1rem]">
+                Ainda não possuí uma conta?{' '}
+                <Link to='/cadastro' className='font-semibold hover:underline'>
+                    Cadasdastre-se aqui.
                 </Link>
             </p>
         </form>
-        <div className="bg-[url('https://i.imgur.com/ZZFAmzo.jpg')] lg:block hidden bg-no-repeat w-full min-h-screen bg-cover bg-center"></div>
+
+        <Card tapeColor="blue" />
     </div>
   )
 }
