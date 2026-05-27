@@ -1,16 +1,17 @@
 import Popup from 'reactjs-popup';
-
 import 'reactjs-popup/dist/index.css';
 import FormPostagem from '../formpostagem/FormPostagem';
+import Button from '../../ui/button/Button';
+import AddMore from '../../../assets/icons/addmore.svg';
 
 function ModalPostagem() {
   return (
     <>
       <Popup
         trigger={
-          <button className='border rounded px-4 py-2 hover:bg-white hover:text-indigo-800'>
+          <Button buttonType='link' variant='blue' icon={AddMore} fitWidth>
             Nova Postagem
-          </button>
+          </Button>
         }
         modal
         contentStyle={{
